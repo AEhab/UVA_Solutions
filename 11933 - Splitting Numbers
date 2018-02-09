@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    while(1)
+    {
+        bool f=0;
+        int n;
+        cin >> n;
+        if(!n)
+            return 0;
+            int now = 1,m=0,x=0;
+        while(n)
+        {
+            if (n&1&&f)
+            m+=now,f=0;
+            else if (n&1)
+            x+=now,f=1;
+            n>>=1;
+            now*=2;
+        }
+        cout<< x <<" " << m <<"\n";
+    }
+    return 0;
+}
