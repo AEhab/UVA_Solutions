@@ -1,3 +1,49 @@
+/////// Two solutions
+/////// first one using stack and Queue
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string str;
+    while(getline(cin,str))
+    {
+       stack <string> en;
+       queue <string> st;
+       string temp;
+       for(int i=(int)str.size()-1;i>=0;i--)
+       {
+           if(str[i]=='[')
+           {
+               st.push(temp);
+               temp="";
+           }
+           else if(str[i]==']')
+           {
+              en.push(temp);
+              temp="";
+           }
+           else
+           temp=str[i]+temp;
+       }
+       while(!st.empty())
+       {
+           cout<<st.front();
+           st.pop();
+       }
+       cout << temp;
+       while(!en.empty())
+       {
+           cout<<en.top();
+           en.pop();
+       }
+       cout <<endl;
+    }
+
+    return 0;
+}
+/////// Second Method
+/////// Using linked list
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -34,8 +80,6 @@ void insert_me(node** pos,char val)
 
 int main()
 {
-    //freopen("in.in","r",stdin);
-    //freopen("out.out","w",stdout);
     string str;
     while(getline(cin,str))
     {
