@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+string lowme(string str) {
+	string ans;
+	for (int i = 0; i < (int) str.size(); i++)
+		ans += tolower(str[i]);
+	return ans;
+}
+
+bool compme(string str1, string str2) {
+	str1 = lowme(str1);
+	str2 = lowme(str2);
+	map<char, int> mp1, mp2;
+	if (str1.size() != str2.size())
+		return false;
+	for (int i = 0; i < (int) str1.size(); i++) {
+		mp1[str1[i]]++;
+		mp2[str2[i]]++;
+	}
+
+	if (mp1 != mp2)
+		return false;
+	else
+		return true;
+}
+int main() {
+
+	string line;
+
+	vector<string> vec;
+	set<string> ans;
+	while (1) {
+		cin >> line;
+		if (line == "#")
+			break;
+		vec.push_back(line);
+	}
+	vector<int> ind((int) vec.size(),0);
+	for (int i = 0; i < (int) vec.size(); i++) {
+		int j;
+		for (j = i + 1; j < (int) vec.size(); j++) {
+			if (compme(vec[i], vec[j])) {
+				ind[i] = 1;
+				ind[j] = 1;
+				break;
+			}
+		}
+		if (j == (int) vec.size() && ind[i] == 0)
+			ans.insert(vec[i]);
+	}
+	for (auto it = ans.begin(); it != ans.end(); it++)
+		cout << *it << endl;
+	
+	return 0;
+}
